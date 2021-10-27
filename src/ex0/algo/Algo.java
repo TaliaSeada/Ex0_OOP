@@ -15,6 +15,10 @@ public class Algo implements ElevatorAlgo {
     //array that holds all the calls in a queue for all the elevators
     private MyQueue[] calls;
 
+    public MyQueue[] getCalls(){
+        return this.calls;
+    }
+
 
     //Constructor
     public Algo(Building b) {
@@ -101,7 +105,7 @@ public class Algo implements ElevatorAlgo {
     /* this function gets a source and destination floors, and number of an elevator
      this function inserts the source and destination in the middle between floors
      are in the same direction */
-    private void insert(int src, int dest, int elev) {
+    public void insert(int src, int dest, int elev) {
         int index = -1;
         //if call queue is empty
         if (this.calls[elev].size() == 0) {
