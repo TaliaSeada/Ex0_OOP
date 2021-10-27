@@ -29,12 +29,10 @@ class AlgoTest {
 
     @Test
     void insert() {
-        /*
-          this function was built in order to insert the calls more efficiently
+        /* this function was built in order to insert the calls more efficiently
           by checking if the elevator goes up or down and inserting the source floor between
           two consecutive floors then insert the destination floor after the source
-          by the same way the source floor was added
-        */
+          by the same way the source floor was added */
 
         MyQueue expected = new MyQueue(); //[0,-3,-4,-5,-1,0,19,40,70,19]
         expected.add(0);  expected.add(-3);
@@ -42,10 +40,8 @@ class AlgoTest {
         expected.add(-1); expected.add(0);
         expected.add(19); expected.add(40);
         expected.add(70); expected.add(19);
-        /*
-          In here we inserted the floors into the queue in the way they are supposed to
-          be and then used our insert function to see if it inserts the floors correctly
-         */
+        /* In here we inserted the floors into the queue in the way they are supposed to
+          be and then used our insert function to see if it inserts the floors correctly */
         int src1 = 0, src2 = -3, src3 = 70, src4 = 19, src5 = -1;
         int dest1 = -5, dest2 = -4, dest3 = 19, dest4 = 40, dest5 = 0;
         algo.insert(src1,dest1,0);
@@ -53,10 +49,9 @@ class AlgoTest {
         algo.insert( src3,dest3,0);
         algo.insert(src4,dest4,0);
         algo.insert(src5,dest5,0);
+
         //then compare between the results using the toString function we built
         assertEquals(expected.toString(),algo.getCalls()[0].toString());
-
-
     }
 
     @Test
