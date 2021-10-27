@@ -56,6 +56,19 @@ class AlgoTest {
 
     @Test
     void timeToFloor() {
+        /* This function get a floor and an elevator,and calculates the amount of time it will take the
+          elevator to get to the floor, including all the floors that are currently in the
+          elevator's queue */
+        int src1 = 0, src2 = -3, src3 = 70;
+        int dest1 = -5, dest2 = -4, dest3 = 19;
+        algo.insert(src1,dest1,0);
+        algo.insert(src2,dest2,0);
+        algo.insert( src3,dest3,0);
+
+
+
+
+
 
     }
 

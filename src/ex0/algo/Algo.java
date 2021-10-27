@@ -89,7 +89,6 @@ public class Algo implements ElevatorAlgo {
         insert(c.getSrc(), c.getDest(), elevNum);
         return elevNum;
     }
-
     private int maxValIndex(MyQueue q) {
         int max = Integer.MIN_VALUE;
         int index = 0;
@@ -101,7 +100,6 @@ public class Algo implements ElevatorAlgo {
         }
         return index;
     }
-
     /* this function gets a source and destination floors, and number of an elevator
      this function inserts the source and destination in the middle between floors
      are in the same direction */
