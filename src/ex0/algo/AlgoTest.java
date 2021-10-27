@@ -1,6 +1,7 @@
 package ex0.algo;
 
 import ex0.Building;
+import ex0.CallForElevator;
 import ex0.Elevator;
 import ex0.simulator.Simulator_A;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,8 @@ class AlgoTest {
     Building b1;
     Building b9;
     Algo algo;
+    CallForElevator call;
+    Elevator elev;
 
     public AlgoTest(){
         Simulator_A.initData(1,null);
@@ -20,11 +23,50 @@ class AlgoTest {
         Simulator_A.initData(9,null);
         b9 = Simulator_A.getBuilding();
         algo = new Algo(b9);
+        elev = b9.getElevetor(0);
+        call = new CallForElevator() {
+            @Override
+            public int getState() {
+                return 0;
+            }
+
+            @Override
+            public double getTime(int state) {
+                return 0;
+            }
+
+            @Override
+            public int getSrc() {
+                return 35;
+            }
+
+            @Override
+            public int getDest() {
+                return 55;
+            }
+
+            @Override
+            public int getType() {
+                return CallForElevator.UP;
+            }
+
+            @Override
+            public int allocatedTo() {
+                return 0;
+            }
+        };
+
     }
 
     @Test
     void allocateAnElevator() {
-        Elevator elev = b1.getElevetor(0);
+        //This function gets a call and return the number of the elevator that was
+        // allocated to take this call.
+
+        //At the start of the process, all the elevators are empty
+        //and elevator 3 is the fastest so this is why this is the expected outcome
+        int elev = algo.allocateAnElevator(call);
+        assertEquals(3,elev);
     }
 
     @Test
