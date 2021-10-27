@@ -112,14 +112,14 @@ public class Algo implements ElevatorAlgo {
             //src
             for (int i = 0; i < this.calls[elev].size() - 1; i++) {
                 if (src > dest) { //down
-                    if (this.calls[elev].get(i) > src && this.calls[elev].get(i + 1) < src) {
+                    if (this.calls[elev].get(i) >= src && this.calls[elev].get(i + 1) <= src) {
                         this.calls[elev].addAt(src, i + 1);
                         index = i + 1;
                         break;
                     }
                 }
                 if (src < dest) { //up
-                    if (this.calls[elev].get(i) < src && this.calls[elev].get(i + 1) > src) {
+                    if (this.calls[elev].get(i) <= src && this.calls[elev].get(i + 1) >= src) {
                         this.calls[elev].addAt(src, i + 1);
                         index = i + 1;
                         break;
@@ -137,13 +137,13 @@ public class Algo implements ElevatorAlgo {
             //dest
             for (int i = index; i < this.calls[elev].size() - 1; i++) {
                 if (src > dest) { //down
-                    if (this.calls[elev].get(i) > dest && this.calls[elev].get(i + 1) < dest) {
+                    if (this.calls[elev].get(i) >= dest && this.calls[elev].get(i + 1) <= dest) {
                         this.calls[elev].addAt(dest, i + 1);
                         return;
                     }
                 }
                 if (src < dest) { //up
-                    if (this.calls[elev].get(i) < dest && this.calls[elev].get(i + 1) > dest) {
+                    if (this.calls[elev].get(i) <= dest && this.calls[elev].get(i + 1) >= dest) {
                         this.calls[elev].addAt(dest, i + 1);
                         return;
                     }
@@ -190,6 +190,7 @@ public class Algo implements ElevatorAlgo {
 
     @Override
     public void cmdElevator(int elev) {
+        System.out.println(this.calls[elev].toString());
         this.calls[elev].removeDuplicateAfter();
         Elevator elevator = this._building.getElevetor(elev);
         if (this.calls[elev].size() > 0) {
