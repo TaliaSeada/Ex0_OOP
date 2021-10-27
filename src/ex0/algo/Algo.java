@@ -163,10 +163,9 @@ public class Algo implements ElevatorAlgo {
         int pos = thisElev.getPos();
         double speed = thisElev.getSpeed();
         int direction = thisElev.getState();
+//        int direction = thisElev.getState();
         double numberOfFloors = Math.abs(pos - src) / speed;
-
         double floorTime = thisElev.getStopTime() + thisElev.getStartTime() + thisElev.getTimeForOpen() + thisElev.getTimeForClose();
-//        HashSet<Integer> floors = new HashSet<Integer>();// to remove duplicates
         LinkedList<Integer> floors = new LinkedList<Integer>();
         double numOfStops = 0;
         //if the elevator is resting the number of stops will still be 0
@@ -192,7 +191,6 @@ public class Algo implements ElevatorAlgo {
 
     @Override
     public void cmdElevator(int elev) {
-        System.out.println(this.calls[elev].toString());
         this.calls[elev].removeDuplicateAfter();
         Elevator elevator = this._building.getElevetor(elev);
         if (this.calls[elev].size() > 0) {
