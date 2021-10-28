@@ -1,9 +1,8 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-interface Elevator
-interface Building
-interface CallForElevator
+
+
 interface ElevatorAlgo
 
 ElevatorAlgo <|-- Algo
@@ -14,34 +13,63 @@ Algo o-- CallForElevator
 CallForElevator <-- Elevator
 Building -> Elevator
 
+interface CallForElevator{
++int getState()
++double getTime()
++int getDest()
++int getSrc()
++int getType()
++int allocateTo()
+}
+interface Elevator{
++int getMaxFloor()
++int getMinFloor()
++double getTimeForOpen()
++double getTimeForClose()
++int getState()
++int getPos()
++boolean goTo(int floor)
++boolean stop(int floor)
++double getSpeed()
++double getStartTime()
++double getStopTime()
++int getID()
+}
 
+interface Building{
++String getBuildingName()
++int minFloor()
++int maxFloor()
++int numberOfElevetors()
++Elevator getElevator(int I)
+}
 
 class Algo {
-myQueue[] calls
-Building _building
-int direction
-boolean[] resting
-algo(Building b)
-myQueue getCalls()
-int allocateAnElevator(CallForElevator c)
-Building getBuilding()
-String getName()
-insert(int src, int dest, int elev)
-int timeToFloor(int src, int elev)
-cmdElevator(int elev)
+-myQueue[] calls
+-Building _building
+-int direction
+-boolean[] resting
++algo(Building b)
++myQueue getCalls()
++int allocateAnElevator(CallForElevator c)
++Building getBuilding()
++String getName()
++insert(int src, int dest, int elev)
+-int timeToFloor(int src, int elev)
++cmdElevator(int elev)
 }
 
 class MyQueue{
-ArrayList<Integer> queue
+-ArrayList<Integer> queue
 
-myQueue()
-add(int num)
-addAt(int num, int index)
-int poll()
-int peek()
-int get(int index)
-removeDuplicateAfter()
-String toString()
++myQueue()
++add(int num)
++addAt(int num, int index)
++int poll()
++int peek()
++int get(int index)
++removeDuplicateAfter()
++String toString()
 
 }
 
