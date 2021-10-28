@@ -3,7 +3,12 @@
 
 
 
-interface ElevatorAlgo
+interface ElevatorAlgo{
++int allocateAnElevator(CallForElevator c)
++Building getBuilding()
++String getName()
++cmdElevator(int elev)
+}
 
 ElevatorAlgo <|-- Algo
 Algo o-- MyQueue
