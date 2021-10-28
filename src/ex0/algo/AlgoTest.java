@@ -6,24 +6,37 @@ import ex0.Elevator;
 import ex0.simulator.Simulator_A;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AlgoTest {
-    Building b1;
-    Building b9;
-    Algo algo;
+    Building b1; //[-2,10] elevators = 1
+    Building b2; //[-2,10] elevators = 2
+    Building b9; //[-10,100] elevators = 10
+    Algo algo1;
+    Algo algo2;
+    Algo algo9;
     CallForElevator call;
-    Elevator elev;
+    Elevator elev1;
+    Elevator elev2;
+    Elevator elev9;
+
 
     public AlgoTest(){
         Simulator_A.initData(1,null);
         b1 = Simulator_A.getBuilding();
+        algo1 = new Algo(b1);
+        elev1 = b1.getElevetor(0); //1
+
+        Simulator_A.initData(2,null);
+        b2 = Simulator_A.getBuilding();
+        algo2 = new Algo(b2);
+        elev2 = b1.getElevetor(0); //2
+
         Simulator_A.initData(9,null);
         b9 = Simulator_A.getBuilding();
-        algo = new Algo(b9);
-        elev = b9.getElevetor(0);
+        algo9 = new Algo(b9);
+        elev9 = b9.getElevetor(0); //10
+
         call = new CallForElevator() {
             @Override
             public int getState() {
@@ -65,7 +78,7 @@ class AlgoTest {
 
         //At the start of the process, all the elevators are empty
         //and elevator 3 is the fastest so this is why this is the expected outcome
-        int elev = algo.allocateAnElevator(call);
+        int elev = algo9.allocateAnElevator(call);
         assertEquals(3,elev);
     }
 
@@ -86,14 +99,21 @@ class AlgoTest {
           be and then used our insert function to see if it inserts the floors correctly */
         int src1 = 0, src2 = -3, src3 = 70, src4 = 19, src5 = -1;
         int dest1 = -5, dest2 = -4, dest3 = 19, dest4 = 40, dest5 = 0;
-        algo.insert(src1,dest1,0);
-        algo.insert(src2,dest2,0);
-        algo.insert( src3,dest3,0);
-        algo.insert(src4,dest4,0);
-        algo.insert(src5,dest5,0);
+        algo9.insert(src1,dest1,0);
+        algo9.insert(src2,dest2,0);
+        algo9.insert( src3,dest3,0);
+        algo9.insert(src4,dest4,0);
+        algo9.insert(src5,dest5,0);
 
         //then compare between the results using the toString function we built
-        assertEquals(expected.toString(),algo.getCalls()[0].toString());
+        assertEquals(expected.toString(), algo9.getCalls()[0].toString());
+
+        //simple check if call is inserted to the end of the queue
+        int src6 = 100;
+        int dest6 = 90;
+        expected.add(100);  expected.add(90);
+        algo9.insert(src6,dest6,0); //[0,-3,-4,-5,-1,0,19,40,70,19,100,90]
+        assertEquals(expected.toString(), algo9.getCalls()[0].toString());
     }
 
     @Test
@@ -101,11 +121,24 @@ class AlgoTest {
         /* This function get a floor and an elevator,and calculates the amount of time it will take the
           elevator to get to the floor, including all the floors that are currently in the
           elevator's queue */
-        int src1 = 0, src2 = -3, src3 = 70;
-        int dest1 = -5, dest2 = -4, dest3 = 19;
-        algo.insert(src1,dest1,0);
-        algo.insert(src2,dest2,0);
-        algo.insert( src3,dest3,0);
+        int src1 = 0, src2 = -1, src3 = 10, src4 = 6, src5 = -1;
+        int dest1 = -2, dest2 = 4, dest3 = 3, dest4 = 9, dest5 = 0;
+        //first check when there is a resting elevator
+        algo2.insert(src1,dest1,0);
+        algo2.insert(src2,dest2,0);
+        algo2.insert( src3,dest3,0);
+        // elev0 time = 22, elev1 time = 22
+        double time_elev0 = algo2.timeToFloor(10, 0);
+        assertEquals(time_elev0, 22);
+
+        //then check when one has kes calls
+        algo2.insert(src4,dest4,1);
+        algo2.insert(src5,dest5,1);
+        double time_elev1 = algo2.timeToFloor(10, 1);
+        assertEquals(time_elev1, 22);
+
+
+
 
 
 

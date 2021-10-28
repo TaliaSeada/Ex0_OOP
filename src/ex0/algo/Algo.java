@@ -147,7 +147,7 @@ public class Algo implements ElevatorAlgo {
         }
     }
 
-    private double timeToFloor(int src, int elev) {
+    public double timeToFloor(int src, int elev) {
         double ans = -1;
         Elevator thisElev = this._building.getElevetor(elev);
         int pos = thisElev.getPos();
