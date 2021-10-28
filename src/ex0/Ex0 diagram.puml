@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Elevator
+interface Building
+interface CallForElevator
+interface ElevatorAlgo
+
+ElevatorAlgo <|-- Algo
+Algo o-- MyQueue
+Algo o-- Elevator
+Algo o-- Building
+Algo o-- CallForElevator
+CallForElevator <-- Elevator
+Building -> Elevator
+
+
+
+class Algo {
+myQueue[] calls
+Building _building
+int direction
+boolean[] resting
+algo(Building b)
+myQueue getCalls()
+int allocateAnElevator(CallForElevator c)
+Building getBuilding()
+String getName()
+insert(int src, int dest, int elev)
+int timeToFloor(int src, int elev)
+cmdElevator(int elev)
+}
+
+class MyQueue{
+ArrayList<Integer> queue
+
+myQueue()
+add(int num)
+addAt(int num, int index)
+int poll()
+int peek()
+int get(int index)
+removeDuplicateAfter()
+String toString()
+
+}
+
+@enduml

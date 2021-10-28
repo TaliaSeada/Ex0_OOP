@@ -54,13 +54,6 @@ public class MyQueue {
         return this.queue.size();
     }
 
-    public void sort() {
-        Collections.sort(queue);
-    }
-    public void sortUpToDown() {
-        Collections.sort(queue);
-        Collections.reverse(queue);
-    }
     public void removeDuplicateAfter() {// to remove unnecessary calls in a row to the same floor
         for(int i =0; i <this.queue.size()-1;i++){
             if(this.queue.get(i) == this.queue.get(i+1)){
