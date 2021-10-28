@@ -15,7 +15,11 @@ class AlgoTest {
     Algo algo1;
     Algo algo2;
     Algo algo9;
-    CallForElevator call;
+    CallForElevator callUp;
+    CallForElevator callDown;
+    CallForElevator callTest1;
+    CallForElevator callTest2;
+    CallForElevator callTest3;
     Elevator elev1;
     Elevator elev2;
     Elevator elev9;
@@ -67,6 +71,86 @@ class AlgoTest {
             public int allocatedTo() {
                 return 0;
             }
+        };
+
+        callDown = new CallForElevator() {
+            @Override
+            public int getState() {return 0;}
+
+            @Override
+            public double getTime(int state) {return 0;}
+
+            @Override
+            public int getSrc() {return 50;}
+
+            @Override
+            public int getDest() {return 10;}
+
+            @Override
+            public int getType() {return CallForElevator.DOWN;}
+
+            @Override
+            public int allocatedTo() {return 0;}
+        };
+
+        callTest1 = new CallForElevator(){
+            @Override
+            public int getState() {return 0;}
+
+            @Override
+            public double getTime(int state) {return 0;}
+
+            @Override
+            public int getSrc() {return 0;}
+
+            @Override
+            public int getDest() {return -2;}
+
+            @Override
+            public int getType() {return CallForElevator.DOWN;}
+
+            @Override
+            public int allocatedTo() {return 0;}
+        };
+
+        callTest2 = new CallForElevator(){
+            @Override
+            public int getState() {return 0;}
+
+            @Override
+            public double getTime(int state) {return 0;}
+
+            @Override
+            public int getSrc() {return -1;}
+
+            @Override
+            public int getDest() {return 4;}
+
+            @Override
+            public int getType() {return CallForElevator.UP;}
+
+            @Override
+            public int allocatedTo() {return 0;}
+        };
+
+        callTest3 = new CallForElevator(){
+            @Override
+            public int getState() {return 0;}
+
+            @Override
+            public double getTime(int state) {return 0;}
+
+            @Override
+            public int getSrc() {return 10;}
+
+            @Override
+            public int getDest() {return 3;}
+
+            @Override
+            public int getType() {return CallForElevator.DOWN;}
+
+            @Override
+            public int allocatedTo() {return 0;}
         };
 
     }
@@ -157,6 +241,21 @@ class AlgoTest {
 
     @Test
     void cmdElevator() {
+        int src1 = 0, src2 = -1, src3 = 10;
+        int dest1 = -2, dest2 = 4, dest3 = 3;
+        algo2.allocateAnElevator(callTest1);
+        algo2.cmdElevator(0);
+        int state = b2.getElevetor(0).getState();
+        assertEquals(1,state);
 
+        algo2.cmdElevator(1);
+        state = b2.getElevetor(1).getState();
+        assertEquals(0,state);
+
+        algo1.allocateAnElevator(callTest2);
+        algo1.allocateAnElevator(callTest1);
+        algo1.cmdElevator(0);
+        state = b1.getElevetor(0).getState();
+        assertEquals(1,state);
     }
 }
