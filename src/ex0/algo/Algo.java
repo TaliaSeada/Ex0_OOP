@@ -153,7 +153,6 @@ public class Algo implements ElevatorAlgo {
         int pos = thisElev.getPos();
         double speed = thisElev.getSpeed();
         int direction = thisElev.getState();
-//        int direction = thisElev.getState();
         double numberOfFloors = Math.abs(pos - src) / speed;
         double floorTime = thisElev.getStopTime() + thisElev.getStartTime() + thisElev.getTimeForOpen() + thisElev.getTimeForClose();
         LinkedList<Integer> floors = new LinkedList<Integer>();
