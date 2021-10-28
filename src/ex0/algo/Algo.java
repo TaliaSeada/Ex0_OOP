@@ -155,25 +155,29 @@ public class Algo implements ElevatorAlgo {
         int direction = thisElev.getState();
         double numberOfFloors = Math.abs(pos - src) / speed;
         double floorTime = thisElev.getStopTime() + thisElev.getStartTime() + thisElev.getTimeForOpen() + thisElev.getTimeForClose();
-        LinkedList<Integer> floors = new LinkedList<Integer>();
+        LinkedList<Integer> stops = new LinkedList<Integer>();
         double numOfStops = 0;
         //if the elevator is resting the number of stops will still be 0
         for (int i = 0; i < this.calls[elev].size(); i++) {
             //going up
             if (direction == 1) {// add only stops on the way, won't count stops under the elevator
                 if (this.calls[elev].get(i) > pos) {
-                    floors.add(this.calls[elev].get(i));
+                    stops.add(this.calls[elev].get(i));
                 }
             }
             //going down
             else if (direction == -1) {
                 if (this.calls[elev].get(i) < pos) {
-                    floors.add(this.calls[elev].get(i));
+                    stops.add(this.calls[elev].get(i));
                 }
             }
+            else{
+                continue;
+            }
         }
-        floors.add(src);
-        numOfStops = floors.size();
+        stops.add(src);
+        numOfStops = stops.size();
+//        System.out.println(numOfStops);
         double time = numberOfFloors + (floorTime * numOfStops);
         return time;
     }

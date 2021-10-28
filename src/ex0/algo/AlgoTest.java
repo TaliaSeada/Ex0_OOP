@@ -101,7 +101,7 @@ class AlgoTest {
         int dest1 = -5, dest2 = -4, dest3 = 19, dest4 = 40, dest5 = 0;
         algo9.insert(src1,dest1,0);
         algo9.insert(src2,dest2,0);
-        algo9.insert( src3,dest3,0);
+        algo9.insert(src3,dest3,0);
         algo9.insert(src4,dest4,0);
         algo9.insert(src5,dest5,0);
 
@@ -123,28 +123,22 @@ class AlgoTest {
           elevator's queue */
         int src1 = 0, src2 = -1, src3 = 10, src4 = 6, src5 = -1;
         int dest1 = -2, dest2 = 4, dest3 = 3, dest4 = 9, dest5 = 0;
-        //first check when there is a resting elevator
         algo2.insert(src1,dest1,0);
         algo2.insert(src2,dest2,0);
-        algo2.insert( src3,dest3,0);
-        // elev0 time = 22, elev1 time = 22
-        double time_elev0 = algo2.timeToFloor(10, 0);
-        assertEquals(time_elev0, 22);
+        algo2.insert(src3,dest3,0);
+        // =time = 22
+        double time1 = algo2.timeToFloor(10, 0);
+        assertEquals(time1, 22);
 
-        //then check when one has kes calls
-        algo2.insert(src4,dest4,1);
-        algo2.insert(src5,dest5,1);
-        double time_elev1 = algo2.timeToFloor(10, 1);
-        assertEquals(time_elev1, 22);
-
-
-
-
-
-
-
-
-
+        int src6 = 0, src7 = -3, src8 = 70, src9 = 19, src10 = -1;
+        int dest6 = -5, dest7 = -4, dest8 = 19, dest9 = 40, dest10 = 0;
+        algo9.insert(src6,dest6,0);
+        algo9.insert(src7,dest7,0);
+        algo9.insert(src8,dest8,0);
+        algo9.insert(src9,dest9,0);
+        algo9.insert(src10,dest10,0);
+        double time2 = algo9.timeToFloor(96, 0);
+        assertEquals(time2, 31.2);
     }
 
     @Test
