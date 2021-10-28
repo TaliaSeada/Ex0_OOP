@@ -167,11 +167,6 @@ class AlgoTest {
 
         int elev2 = algo9.allocateAnElevator(callDown);
         assertEquals(1, elev2);
-
-
-
-
-
     }
 
     @Test
